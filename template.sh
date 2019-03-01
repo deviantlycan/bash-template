@@ -13,7 +13,7 @@
 ## better.
 ##################################################################
 
-if [ -z "$WORKING_DIR" ]; then
+if [[ -z "$WORKING_DIR" ]]; then
 	WORKING_DIR=.
 fi
 
@@ -22,40 +22,41 @@ TMP_DIR=${WORKING_DIR}/tmp
 START_TIME=
 QUIET=false
 SCRIPT_NAME=`basename "$0"`
+LOG_PREFIX="=="
 
 # Main entry point after parameters are read.
 function main(){
 	init
-    printHeader
-    doAlltheThings
-    cleanup
-    printFooter
+	printHeader
+	doAlltheThings
+	cleanup
+	printFooter
 }
 
 # This is where main functionality goes.  Feel free to rename this function or to do whatever you want.
 function doAlltheThings(){
 	printf "===========================================================================\n"
 	printf "== ${SCRIPT_NAME} \n"
-    printf "== This is a bash script template and has not been configured to do anything.\n"
-    printf "===========================================================================\n"
+	printf "== This is a bash script template and has not been configured to do anything.\n"
+	printf "===========================================================================\n"
 
-    printf "WAKA - WAKA- WAKA- WAKA- WAKA- WAKA- WAKA\n"
-    printf "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n"
-    printf "▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░\n"
-    printf "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n"
-    printf "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n"
-    printf "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n"
-    printf "▓▓▀────▀▓▓▓▓▓▓▀─────▀▓▓▓▓▓▓▓▓▓▓▓▀─────▀▓\n"
-    printf "▓───▀─▄▓▓▓▓▓▓▓─▀──▀──▓▓▓▓▓▓▓▓▓▓▓──▀──▀─▓\n"
-    printf "▌────▓▓▓─▓▓─▓▓──▄─▄──▓▓─▓▓─▓▓─▓▓──▄─▄──▓\n"
-    printf "▓─────▀▓▓▓▓▓▓▓─▀─▀─▀─▓▓▓▓▓▓▓▓▓▓▓─▀─▀─▀─▓\n"
-    printf "▓▓▄────▄▓▓▓▓▓▓─▄─▄─▄─▓▓▓▓▓▓▓▓▓▓▓─▄─▄─▄─▓\n"
-    printf "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n"
-    printf "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n"
-    printf "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n"
-    printf "▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░\n"
-    printf "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n"
-    printf "WAKA - WAKA- WAKA- WAKA- WAKA- WAKA- WAKA\n"
+	printf "WAKA - WAKA- WAKA- WAKA- WAKA- WAKA- WAKA\n"
+	printf "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n"
+	printf "▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░\n"
+	printf "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n"
+	printf "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n"
+	printf "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n"
+	printf "▓▓▀────▀▓▓▓▓▓▓▀─────▀▓▓▓▓▓▓▓▓▓▓▓▀─────▀▓\n"
+	printf "▓───▀─▄▓▓▓▓▓▓▓─▀──▀──▓▓▓▓▓▓▓▓▓▓▓──▀──▀─▓\n"
+	printf "▌────▓▓▓─▓▓─▓▓──▄─▄──▓▓─▓▓─▓▓─▓▓──▄─▄──▓\n"
+	printf "▓─────▀▓▓▓▓▓▓▓─▀─▀─▀─▓▓▓▓▓▓▓▓▓▓▓─▀─▀─▀─▓\n"
+	printf "▓▓▄────▄▓▓▓▓▓▓─▄─▄─▄─▓▓▓▓▓▓▓▓▓▓▓─▄─▄─▄─▓\n"
+	printf "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n"
+	printf "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n"
+	printf "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n"
+	printf "▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░▒▓▒░\n"
+	printf "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n"
+	printf "WAKA - WAKA- WAKA- WAKA- WAKA- WAKA- WAKA\n"
 }
 
 # This initializes the start time and creates the temp working directory
@@ -72,30 +73,27 @@ function cleanup(){
 
 # Prints out the start time and the parameters affecting how this script will run
 function printHeader(){
-	if [ $QUIET == 'false' ]; then
-		printf "==================================================\n"
-		printf "== Running: ${SCRIPT_NAME}\n"
-		printf "== Start time: $(date)\n"
-        printf "== Temp Dir: ${TMP_DIR}\n"
-		printf "==================================================\n\n"
-	fi
+	log "=================================================="
+	log "== Running: ${SCRIPT_NAME}"
+	log "== Start time: $(date)"
+	log "== -----------------------------------------------"
+	log "== Temp Dir: ${TMP_DIR}"
+	log "==================================================\n\n"
 }
 
 # Prints a summary of the script execution.
 function printFooter(){
-	if [ $QUIET == 'false' ]; then
-		END_TIME=`date +%s`
-		TOTAL_RUN_TIME=$((END_TIME-START_TIME))
-        printf "\n==================================================\n"
-		printf "== End Time: $(date)\n"
-		printf "== Total Run Time: ${TOTAL_RUN_TIME} seconds.\n"
-    	printf "== ${SCRIPT_NAME} Complete \n"
-        printf "==================================================\n"
-	fi
+	END_TIME=`date +%s`
+	TOTAL_RUN_TIME=$((END_TIME-START_TIME))
+	log "\n=================================================="
+	log "== End Time: $(date)"
+	log "== Total Run Time: ${TOTAL_RUN_TIME} seconds."
+	log "== ${SCRIPT_NAME} Complete"
+	log "=================================================="
 }
 
 # Print Help
-function printhelp()
+function printHelp()
 {
 	printf "== ${SCRIPT_NAME} ==\n"
 	printf "Description:\n  -- This script does AlltheThings ;)  \n Clearly the Description has not been set yet.  :/ \n Here is a cool Pac-Man for now... \n\n"
@@ -118,8 +116,15 @@ function usage()
 	printf " -q | --quiet		- Suppress output\n"
 }
 
+# Simple log function that handles checking for "quiet" mode
+function log (){
+	if [[ ${QUIET} == 'false' ]]; then
+		printf "$LOG_PREFIX$1\n"
+	fi
+}
+
 # Reads the command line parameters
-while [ "$1" != "" ]
+while [[ "$1" != "" ]]
 do
 	case $1 in
 		-t | --tmp-dir )		shift
@@ -129,10 +134,10 @@ do
 								;;
 		-q | --quiet )			QUIET=true
 								;;
-		-h | --help )			printhelp
+		-h | --help )			printHelp
 								exit
 								;;
-		* )						printhelp
+		* )						printHelp
 								exit 1
 	esac
 	shift
